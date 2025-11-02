@@ -12,8 +12,8 @@ Route::get('/',[JobController::class , 'index']);
 Route::get('/jobs/create',[JobController::class , 'create'])->middleware('auth');
 Route::post('/jobs',[JobController::class , 'store'])->middleware('auth');
 
-
-Route::get('/search',SearchController::class);
+Route::get('/search', App\Http\Controllers\SearchController::class);
+//Route::get('/search',SearchController::class);
 Route::get('/tags/{tag}',TagController::class);
 
 Route::middleware('guest')->group(function(){
