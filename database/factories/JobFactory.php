@@ -10,21 +10,16 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class JobFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
             'employer_id' => Employer::factory(),
-            'title' => fake()->title,
-            'salary' => fake()->randomElement(['$50,000', '$75,000', '$100,000']),
-            'location' => fake()->city,
-            'schedule' => fake()->randomElement(['Full time', 'Part time']),
-            'url' => fake()->url,
-            'featured' => false,
+            'title' => fake()->jobTitle(),
+            'salary' => fake()->randomElement(['₹35,000/month', '₹50,000/month', '₹80,000/month']),
+            'location' => fake()->city(),
+            'schedule' => fake()->randomElement(['Full time', 'Part time', 'Remote']),
+            'url' => fake()->url(),
+            'featured' => fake()->boolean(20),
         ];
     }
 }
