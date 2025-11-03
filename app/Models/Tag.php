@@ -22,4 +22,10 @@ class Tag extends Model
         'name',
         'name',
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
+
 }

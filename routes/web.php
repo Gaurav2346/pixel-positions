@@ -14,7 +14,7 @@ Route::post('/jobs',[JobController::class , 'store'])->middleware('auth');
 
 Route::get('/search', App\Http\Controllers\SearchController::class);
 //Route::get('/search',SearchController::class);
-Route::get('/tags/{tag}',TagController::class);
+Route::get('/tags/{tag}', TagController::class)->name('tags.show');
 
 Route::middleware('guest')->group(function(){
     Route::get('/register',[RegisterUserController::class , 'create']);
