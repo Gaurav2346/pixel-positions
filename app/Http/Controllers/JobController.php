@@ -30,8 +30,6 @@ class   JobController extends Controller
         ]);
     }
 
-
-
     /**
      * Show the form for creating a new resource.
      */
@@ -55,19 +53,19 @@ class   JobController extends Controller
         ]);
 
         $attributes['featured'] = $request->has('featured');
+
         $user = Auth::user();
 
+        $employer = $user->employer;
 
-        // Auto-create employer if missing (hotfix: provide default logo)
-        if (! $user->employer) {
-            $user->employer()->create([
+        if (! $employer) {
+            $employer = $user->employer()->create([
                 'name' => $user->name,
                 'logo' => env('DEFAULT_EMPLOYER_LOGO', 'https://via.placeholder.com/150?text=Logo'),
             ]);
         }
 
-
-        $job = $user->employer->jobs()->create(Arr::except($attributes, 'tags'));
+        $job = $employer->jobs()->create(Arr::except($attributes, 'tags'));
 
         if (!empty($attributes['tags'])) {
             foreach (explode(',', $attributes['tags']) as $tag) {
@@ -76,10 +74,7 @@ class   JobController extends Controller
         }
 
         return redirect('/')->with('success', 'Job created successfully!');
-    }
-
-
-    /**
+    }/**
      * Display the specified resource.
      */
     public function show(Job $job)
