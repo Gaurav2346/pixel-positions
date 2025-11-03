@@ -49,24 +49,34 @@ class   JobController extends Controller
             'title' => ['required'],
             'salary' => ['required'],
             'location' => ['required'],
-            'schedule' => ['required',Rule::in('Full Time', 'Part Time')],
-            'url' => ['required','active_url'],
-            'tags' => ['Nullable'],
+            'schedule' => ['required', Rule::in(['Full Time', 'Part Time'])],
+            'url' => ['required', 'active_url'],
+            'tags' => ['nullable'],
         ]);
 
-        $attributes ['featured'] =$request->has('featured');
-        $job = Auth::user()->employer->jobs()->create(Arr::except($attributes,'tags'));
+        $attributes['featured'] = $request->has('featured');
+        $user = Auth::user();
 
-        if ($attributes['tags'] ?? false){
-            foreach (explode(',', $attributes['tags']) as $tag)
-            {
-                $job->tag($tag);
 
+        if (! $user->employer) {
+            $user->employer()->create([
+                'name' => $user->name,
+                'logo' => $user->logo,
+
+            ]);
+        }
+
+        $job = $user->employer->jobs()->create(Arr::except($attributes, 'tags'));
+
+        if (!empty($attributes['tags'])) {
+            foreach (explode(',', $attributes['tags']) as $tag) {
+                $job->tag(trim($tag));
             }
         }
-        return redirect('/');
 
+        return redirect('/')->with('success', 'Job created successfully!');
     }
+
 
     /**
      * Display the specified resource.
