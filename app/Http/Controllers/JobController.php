@@ -13,9 +13,7 @@ use Illuminate\Validation\Rule;
 
 class   JobController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $allJobs = Job::latest()->with('employer', 'tags')->get();
