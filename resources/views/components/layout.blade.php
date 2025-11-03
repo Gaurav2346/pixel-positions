@@ -23,14 +23,14 @@
             </a>
         </div>
 
-        <div class="space-x-5 px-5 py-2 bg-gray-400/50 rounded-4xl text-bold ">
+        <div class="space-x-3 px-3 py-2 bg-gray-400/50 rounded-4xl text-bold ">
             <a href="#" class="hover:bg-gray-400/80 px-4 py-2 rounded-4xl transition-colors duration-400">Jobs</a>
             <a href="#" class="hover:bg-gray-400/80 px-4 py-2 rounded-4xl transition-colors duration-400">Careers</a>
             <a href="#" class="hover:bg-gray-400/80 px-4 py-2 rounded-4xl transition-colors duration-400">Salaries</a>
             <a href="#" class="hover:bg-gray-400/80 px-4 py-2 rounded-4xl transition-colors duration-400">Companies</a>
         </div>
         @auth
-            <div class="hover:bg-gray-400/50 px-4 py-2 rounded-4xl transition-colors duration-400 flex space-x-8">
+            <div class="hover:bg-gray-400/50 px-2 py-1 rounded-4xl transition-colors duration-400 flex space-x-8">
                 <a class="hover:bg-gray-400/80 px-2 py-1 rounded-4xl transition-colors duration-400"href="/jobs/create">Post a Job</a>
 
             <form action="/logout" method="POST">
