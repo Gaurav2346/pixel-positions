@@ -16,10 +16,12 @@ class   JobController extends Controller
 
     public function index()
     {
+        // Load all jobs with employer and tags
         $allJobs = Job::latest()->with('employer', 'tags')->get();
 
-        $featuredJobs = $allJobs->where('featured', true);
-        $regularJobs = $allJobs->where('featured', false);
+        // Filter correctly for integer values (1 = featured, 0 = regular)
+        $featuredJobs = $allJobs->where('featured', 1);
+        $regularJobs  = $allJobs->where('featured', 0);
 
         return view('jobs.index', [
             'featuredJobs' => $featuredJobs,
