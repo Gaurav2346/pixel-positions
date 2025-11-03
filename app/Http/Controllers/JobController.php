@@ -58,13 +58,14 @@ class   JobController extends Controller
         $user = Auth::user();
 
 
+        // Auto-create employer if missing (hotfix: provide default logo)
         if (! $user->employer) {
             $user->employer()->create([
                 'name' => $user->name,
-                'logo' => $user->logo,
-
+                'logo' => env('DEFAULT_EMPLOYER_LOGO', 'https://via.placeholder.com/150?text=Logo'),
             ]);
         }
+
 
         $job = $user->employer->jobs()->create(Arr::except($attributes, 'tags'));
 
