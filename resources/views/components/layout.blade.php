@@ -10,7 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..600;1,100..600&display=swap" rel="stylesheet">
 {{--    <script src="https://cdn.tailwindcss.com"></script>--}}
-    @vite('resources/css/app.css','resources/js/app.js')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 </head>
 <body class="bg-black text-white font-hanken-grotesk">
 <div class="px-10 ">
