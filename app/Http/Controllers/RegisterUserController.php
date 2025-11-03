@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\File;
 use Illuminate\Validation\Rules\Password;
@@ -30,40 +29,33 @@ class RegisterUserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-
-
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed|min:6',
-            'employer' => 'required|string|max:255',
-            'logo' => 'nullable|image|max:2048', // 👈 validate logo
-        ]);
+        $userAttribute = $request->validate([
+            'name'=>['required'],
+            'email'=>['required','email','unique:users,email'],
+            'password' => ['required', 'confirmed', Password::min(6)],
 
-        $user = \App\Models\User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => Hash::make($validated['password']),
         ]);
+        $employerAttribute = $request->validate([
+            'employer'=>['required'],
+            'logo'=>['required',File::types(['jpg','png','jpeg','webp'])],
 
-        if ($request->hasFile('logo')) {
-            $path = $request->file('logo')->store('logos', 'public');
-        } else {
-            $path = 'https://via.placeholder.com/150?text=Logo';
-        }
+        ]);
+        $user = User::create($userAttribute);
+
+        $logoPath = $request->logo->store('logos');
 
         $user->employer()->create([
-            'name' => $validated['employer'],
-            'logo' => $path,
+            'name' => $employerAttribute['employer'],
+            'logo' => $logoPath,
         ]);
 
-        auth()->login($user);
+        Auth::login($user);
 
-        return redirect('/')->with('success', 'Account created successfully!');
+        return redirect('/');
+
     }
-
 
     /**
      * Display the specified resource.
