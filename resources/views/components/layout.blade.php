@@ -14,14 +14,11 @@
 </head>
 <body class="bg-black text-white font-hanken-grotesk">
 <div class="px-4 sm:px-10">
-    <!-- Navbar -->
     <nav class="flex justify-between items-center py-4 border-b border-b-white/20">
-        <!-- Logo -->
         <a href="/" class="flex items-center space-x-2">
             <img src="{{ Vite::asset('resources/images/logo.svg') }}" alt="logo" class="h-8 sm:h-10">
         </a>
 
-        <!-- Desktop Links -->
         <div class="hidden md:flex space-x-3 px-3 py-2 bg-gray-400/50 rounded-4xl font-semibold">
             <a href="#" class="hover:bg-gray-400/80 px-4 py-2 rounded-4xl transition-colors">Jobs</a>
             <a href="#" class="hover:bg-gray-400/80 px-4 py-2 rounded-4xl transition-colors">Careers</a>
@@ -29,7 +26,6 @@
             <a href="#" class="hover:bg-gray-400/80 px-4 py-2 rounded-4xl transition-colors">Companies</a>
         </div>
 
-        <!-- Auth Section (Desktop) -->
         @auth
             <div class="hidden md:flex items-center space-x-3 bg-gray-400/50 px-3 py-2 rounded-4xl">
                 <a href="/jobs/create" class="hover:bg-gray-400/80 px-3 py-2 rounded-4xl transition-colors">Post a Job</a>
@@ -48,13 +44,11 @@
             </div>
         @endguest
 
-        <!-- Hamburger Icon (Mobile) -->
         <button id="menu-toggle" class="md:hidden p-2 border border-gray-500 rounded-lg hover:bg-gray-700">
             ☰
         </button>
     </nav>
 
-    <!-- Mobile Dropdown -->
     <div id="mobile-menu" class="hidden md:hidden flex flex-col mt-3 space-y-2 bg-gray-900/90 p-4 rounded-xl">
         <a href="#" class="hover:bg-gray-700 px-3 py-2 rounded-lg transition-colors">Jobs</a>
         <a href="#" class="hover:bg-gray-700 px-3 py-2 rounded-lg transition-colors">Careers</a>
@@ -76,7 +70,6 @@
         @endguest
     </div>
 
-    <!-- Main Content -->
     <main class="mt-10 max-w-[986px] mx-auto px-2">
         {{ $slot }}
     </main>
