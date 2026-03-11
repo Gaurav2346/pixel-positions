@@ -2,7 +2,7 @@
     <div class="space-y-10">
 
         <section class="text-center">
-            <h1 class="text-4xl font-bold">Lets Find a Perfect Job</h1>
+            <h1 class="text-4xl font-bold animate__animated animate__backInDown animate__slow">Lets Find a Perfect Job</h1>
 
             <x-forms.form action="/search" class="mt-8">
                 <x-forms.input :label="false" name="q" placeholder="Full stack Dev"/>

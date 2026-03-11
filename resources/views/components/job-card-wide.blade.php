@@ -2,7 +2,7 @@
 
 <x-panel class="flex items-center gap-x-6 hover:bg-white/5 transition rounded-2xl p-4">
     {{-- ✅ Employer Logo --}}
-    <div class="shrink-0">
+    <div class="shrink-0 animate__animated animate__fadeInLeft animate__slow">
         <x-employer-logo :employer="$job->employer" class="rounded-lg" />
     </div>
 

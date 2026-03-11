@@ -1,5 +1,5 @@
 
-<div class="inline-flex items-center gap-x-2">
+<div class="inline-flex items-center gap-x-2 animate__animated animate__backInLeft animate__slow">
     <span class="w-2 h-2 bg-white inline-block"></span>
     <h3 class="text-lg font-bold">
         {{$slot}}
